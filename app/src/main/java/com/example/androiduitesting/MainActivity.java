@@ -1,7 +1,10 @@
 package com.example.androiduitesting;
 
+import static ads_mobile_sdk.gp.id;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -40,6 +43,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         cityList.setAdapter(cityAdapter);
+
+        //Lab7
+        cityList.setOnItemClickListener((parent, view, position, id) -> {
+            String clickedCity = parent.getItemAtPosition(position).toString();
+            Intent showActivityIntent = new Intent(MainActivity.this, ShowActivity.class);
+            showActivityIntent.putExtra("city", clickedCity);
+            startActivity(showActivityIntent);
+        });
+        //
 
         final Button addButton = findViewById(R.id.button_add);
         addButton.setOnClickListener(new View.OnClickListener() {
